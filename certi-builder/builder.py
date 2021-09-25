@@ -65,6 +65,3 @@ def validate_hex(hex_code: Text) -> bool:
         return True
     else:
         return False
-
-
-validate_hex("#FFFZZF")
