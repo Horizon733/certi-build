@@ -1,6 +1,6 @@
 import sys
 import click
-from builder import generate_certificate, path_exist, validate_hex
+from certi_builder.builder import generate_certificate, path_exist, validate_hex
 
 
 @click.group()
