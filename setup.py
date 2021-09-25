@@ -24,7 +24,7 @@ dependency_links = [package.strip().replace('git+', '') for package in all_reqs 
 setup(
     name='certi_builder',
     description='A simple commandline app for generating bulk of certificates',
-    version='1.0',
+    version='1.0.0',
     packages=find_packages(),  # list of all packages
     install_requires=install_requires,
     python_requires='>=3.7',  # any python greater than 3.0
@@ -38,7 +38,7 @@ setup(
     long_description_content_type="text/markdown",
     license='MIT',
     url='https://github.com/Horizon733/certi-build',
-    download_url='https://github.com/Horizon733/certi-build/archive/v1.0.tar.gz',
+    download_url='https://github.com/Horizon733/certi-build/archive/refs/tags/v1.0.tar.gz',
     dependency_links=dependency_links,
     author_email='dishantgandhi733@gmail.com',
     classifiers=[
