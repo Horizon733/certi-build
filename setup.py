@@ -38,7 +38,7 @@ setup(
     long_description_content_type="text/markdown",
     license='MIT',
     url='https://github.com/Horizon733/certi-build',
-    download_url='https://github.com/Horizon733/certi-build',
+    download_url='https://github.com/Horizon733/certi-build/archive/v1.0-beta.tar.gz',
     dependency_links=dependency_links,
     author_email='dishantgandhi733@gmail.com',
     classifiers=[
