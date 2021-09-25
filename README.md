@@ -13,10 +13,10 @@ A simple commandline app for generating bulk of certificates
 ```
 # Usage
 ```bash
-$ certi-builder build
+$ certi_builder build
 ```
 
 # bold text
 ```bash
-$ certi-builder build --bold
+$ certi_builder build --bold
 ```

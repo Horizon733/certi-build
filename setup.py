@@ -22,18 +22,18 @@ install_requires = [package.strip() for package in all_reqs
 dependency_links = [package.strip().replace('git+', '') for package in all_reqs if 'git+' not in package]
 
 setup(
-    name='certi-builder',
+    name='certi_builder',
     description='A simple commandline app for generating bulk of certificates',
     version='1.0.0',
     packages=find_packages(),  # list of all packages
     install_requires=install_requires,
-    python_requires='>=3.0',  # any python greater than 2.7
+    python_requires='>=3.0.7',  # any python greater than 3.0
     entry_points='''
         [console_scripts]
-        certi-builder=certi-builder.__main__:main
+        certi-builder=certi_builder.__main__:main
     ''',
     author="Dishant Gandhi",
-    keyword="certificate generator, certificates, python certificates, certi-builder",
+    keyword="certificate generator, certificates, python certificates, certi builder",
     long_description=README,
     long_description_content_type="text/markdown",
     license='MIT',
