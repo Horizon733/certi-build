@@ -11,15 +11,15 @@ logger = logging.getLogger(__name__)
 
 
 def generate_certificate(
-        certificate_image_path: Text,
-        names_file_path: Text,
-        text_color: Text,
-        x_location: float,
-        y_location: float,
-        is_bold: bool,
-        font_file_path: Text,
-        font_size: int,
-        output_location: Text
+    certificate_image_path: Text,
+    names_file_path: Text,
+    text_color: Text,
+    x_location: float,
+    y_location: float,
+    is_bold: bool,
+    font_file_path: Text,
+    font_size: int,
+    output_location: Text,
 ):
     names_list = get_names(names_file_path)
     text_color = ImageColor.getcolor(text_color, "RGB")
@@ -30,8 +30,12 @@ def generate_certificate(
         drawImage = ImageDraw.Draw(image)
         drawImage.text(location, name, fill=text_color, font=font)
         if is_bold:
-            drawImage.text((x_location + 1, y_location + 1), name, fill=text_color, font=font)
-            drawImage.text((x_location - 1, y_location - 1), name, fill=text_color, font=font)
+            drawImage.text(
+                (x_location + 1, y_location + 1), name, fill=text_color, font=font
+            )
+            drawImage.text(
+                (x_location - 1, y_location - 1), name, fill=text_color, font=font
+            )
         image.save(f"{output_location}\certificate_{name}.png")
 
 

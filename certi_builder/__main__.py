@@ -4,7 +4,7 @@ from certi_builder.builder import generate_certificate, path_exist, validate_hex
 
 
 @click.group()
-@click.version_option("1.0.0")
+@click.version_option("1.0.1")
 def main():
     pass
 
@@ -15,73 +15,60 @@ def main():
     prompt=True,
     type=str,
     required=True,
-    help="Certificate image path formats excepted: [png, jpg, pdf]"
+    help="Certificate image path formats excepted: [png, jpg, pdf]",
 )
 @click.option(
     "--excel-file-path",
     prompt=True,
     type=str,
     required=True,
-    help="Excel file path which consists names of people"
+    help="Excel file path which consists names of people",
 )
 @click.option(
-    "--text-color",
-    prompt=True,
-    type=str,
-    required=True,
-    help="Provide Hex color"
+    "--text-color", prompt=True, type=str, required=True, help="Provide Hex color"
 )
 @click.option(
     "--font-file-path",
     prompt=True,
     type=str,
     required=True,
-    help="We current support TrueType font"
+    help="We current support TrueType font",
 )
-@click.option(
-    "--font-size",
-    prompt=True,
-    type=int,
-    required=True,
-    help="Font size"
-)
+@click.option("--font-size", prompt=True, type=int, required=True, help="Font size")
 @click.option(
     "--output-location",
     prompt=True,
     type=str,
     required=True,
-    help="a directory to store all certificates E.g D:/directory"
+    help="a directory to store all certificates E.g D:/directory",
 )
 @click.option(
     "--x-location",
     prompt=True,
     type=float,
     required=True,
-    help="x-axis coords for text to be placed"
+    help="x-axis coords for text to be placed",
 )
 @click.option(
     "--y-location",
     prompt=True,
     type=float,
     required=True,
-    help="y-axis coords for text to be placed"
+    help="y-axis coords for text to be placed",
 )
 @click.option(
-    "--bold",
-    is_flag=True,
-    required=False,
-    help="if you want names to be bold."
+    "--bold", is_flag=True, required=False, help="if you want names to be bold."
 )
 def build(
-        certificate_image_path,
-        excel_file_path,
-        text_color,
-        font_file_path,
-        font_size,
-        x_location,
-        y_location,
-        output_location,
-        bold,
+    certificate_image_path,
+    excel_file_path,
+    text_color,
+    font_file_path,
+    font_size,
+    x_location,
+    y_location,
+    output_location,
+    bold,
 ):
     """
     Generate certificates on go. Every option will be prompted except bold
@@ -114,11 +101,11 @@ def build(
         bold,
         font_file_path,
         font_size,
-        output_location
+        output_location,
     )
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     args = sys.argv
     if "--help" in args or len(args) == 1:
         print("Certi-builder")
