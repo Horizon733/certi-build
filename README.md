@@ -1,5 +1,20 @@
-# Certi-builder
-A simple commandline app for generating bulk of certificates
+<h1 align="center">Certi-builder</h1>
+<p align="center">A simple commandline app for generating bulk of certificates</p>
+
+<p align="center">
+  <img src="https://img.shields.io/pypi/pyversions/certi-builder.svg">
+  <img src="https://img.shields.io/github/repo-size/horizon733/certi-build">
+</p>
+<p align="center">
+  <img src="https://img.shields.io/pypi/l/certi-builder">
+</p>
+
+# Features
+- Supports png, jpg image templates for certificates
+- Extracts names from excel file
+- Makes text bold if needed
+- Generates bulk certificates in minutes
+
 # Installation
 ## Using Pip
 ```bash
@@ -13,10 +28,36 @@ A simple commandline app for generating bulk of certificates
 ```
 # Usage
 ```bash
-$ certi_builder build
+$ certi-builder build
+certificate image path: <your path>
+Excel file path:  <your path>
+Text color: Hex color code E.g #000000
+Font file path: <your path> Please use ttf fonts
+Font size: Int E.g 10
+Output location:  <your path>
+X location: X-axis coords, These you can find in paint
+Y location: Y-axis coords, These you can find in paint
 ```
 
 # bold text
 ```bash
-$ certi_builder build --bold
+$ certi-builder build --bold
+certificate image path: <your path>
+Excel file path:  <your path>
+Text color: Hex color code E.g #000000
+Font file path: <your path> Please use ttf fonts
+Font size: Int E.g 10
+Output location:  <your path>
+X location: X-axis coords, These you can find in paint
+Y location: Y-axis coords, These you can find in paint
 ```
+
+# Upcoming Features
+- Making use of a codestyle i.e black
+- Support for different kind of files for name extraction
+- Different kinds of text formatting E.g Italic, Underline
+- AI recognization for replacing name in certificate
+
+# Screenshots
+![image](https://user-images.githubusercontent.com/57827233/134798681-af82cd38-8197-43e8-ba3f-4fd97d1f8783.png)
+![image](https://user-images.githubusercontent.com/57827233/134798688-ddfeced2-1dfe-4e40-8578-3d18899127ca.png)
