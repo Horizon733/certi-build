@@ -53,7 +53,6 @@ Y location: Y-axis coords, These you can find in paint
 ```
 
 # Upcoming Features
-- Making use of a codestyle i.e black
 - Support for different kind of files for name extraction
 - Different kinds of text formatting E.g Italic, Underline
 - AI recognization for replacing name in certificate
