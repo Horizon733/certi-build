@@ -52,6 +52,10 @@ X location: X-axis coords, These you can find in paint
 Y location: Y-axis coords, These you can find in paint
 ```
 
+# For Contributors
+If you have any idea please open an issue so we could discuss and if you want some inspiration have a look at Upcoming Features.
+Please make sure to read [contributing.md](https://github.com/Horizon733/certi-build/blob/master/contributing.md) before starting to contribute.
+
 # Upcoming Features
 - Support for different kind of files for name extraction
 - Different kinds of text formatting E.g Italic, Underline
