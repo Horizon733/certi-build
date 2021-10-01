@@ -17,6 +17,9 @@ def generate_certificate(
         x_location: float,
         y_location: float,
         is_bold: bool,
+        is_underlined: bool,
+        is_camel: bool,
+        is_upper: bool,
         font_file_path: Text,
         font_size: int,
         output_location: Text
@@ -28,10 +31,42 @@ def generate_certificate(
     for name in names_list:
         image = Image.open(certificate_image_path)
         drawImage = ImageDraw.Draw(image)
-        drawImage.text(location, name, fill=text_color, font=font)
         if is_bold:
-            drawImage.text((x_location + 1, y_location + 1), name, fill=text_color, font=font)
-            drawImage.text((x_location - 1, y_location - 1), name, fill=text_color, font=font)
+            if is_underlined:
+                twidth, theight = drawImage.textsize(name, font=font)
+                lx, ly = location[0], location[1] + theight
+                drawImage.text(location, name, fill=text_color, font=font)
+                drawImage.text((x_location + 1, y_location + 1), name, fill=text_color, font=font)
+                drawImage.text((x_location - 1, y_location - 1), name, fill=text_color, font=font)
+                drawImage.line((lx, ly+10, lx + twidth, ly+10),fill=text_color,width=5)
+            else:
+                drawImage.text(location, name, fill=text_color, font=font)
+                drawImage.text((x_location + 1, y_location + 1), name, fill=text_color, font=font)
+                drawImage.text((x_location - 1, y_location - 1), name, fill=text_color, font=font)
+        elif is_camel:
+            if is_underlined:
+                twidth, theight = drawImage.textsize(name.title(), font=font)
+                lx, ly = location[0], location[1] + theight
+                drawImage.text(location, name.title(), fill=text_color, font=font)
+                drawImage.line((lx, ly+10, lx + twidth, ly+10),fill=text_color,width=5)
+            else:
+                drawImage.text(location, name.title(), fill=text_color, font=font) 
+        elif is_upper:
+            if is_underlined:
+                twidth, theight = drawImage.textsize(name.upper(), font=font)
+                lx, ly = location[0], location[1] + theight
+                drawImage.text(location, name.upper(), fill=text_color, font=font)
+                drawImage.line((lx, ly+10, lx + twidth, ly+10),fill=text_color,width=5)
+            else:
+                drawImage.text(location, name.upper(), fill=text_color, font=font)
+           
+        elif is_underlined:
+            twidth, theight = drawImage.textsize(name, font=font)
+            lx, ly = location[0], location[1] + theight
+            drawImage.text(location, name, fill=text_color, font=font)
+            drawImage.line((lx, ly+10, lx + twidth, ly+10),fill=text_color,width=5)
+        else:
+            drawImage.text(location, name, fill=text_color, font=font)
         image.save(f"{output_location}\certificate_{name}.png")
 
 
