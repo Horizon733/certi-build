@@ -1,5 +1,5 @@
 <h1 align="center">Certi-builder</h1>
-<p align="center">A simple commandline app for generating bulk of certificates</p>
+<p align="center">A simple commandline app for generating bulk of certificates.</p>
 
 <p align="center">
   <img src="https://img.shields.io/pypi/pyversions/certi-builder.svg">
