@@ -55,6 +55,12 @@ Y location: Y-axis coords, These you can find in paint
 # For Contributors
 If you have any idea please open an issue so we could discuss and if you want some inspiration have a look at Upcoming Features.<br>
 Please make sure to read [contributing.md](https://github.com/Horizon733/certi-build/blob/master/contributing.md) before starting to contribute.
+## Installing dependencies
+- Make sure to install all dependencies in a new environment before start developing any new feature
+```commandline
+pip install -r requirements.txt
+```
+- Use black for formating and checking code quality before committing your code
 
 # Upcoming Features
 - Support for different kind of files for name extraction
