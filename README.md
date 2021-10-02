@@ -65,6 +65,7 @@ pip install -r requirements.txt
 # Upcoming Features
 - Support for different kind of files for name extraction
 - Different kinds of text formatting E.g Italic, Underline
+- Support for different kind of image formats e.g Pdf, etc.
 - AI recognization for replacing name in certificate
 
 # Screenshots
