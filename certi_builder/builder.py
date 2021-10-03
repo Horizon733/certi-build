@@ -11,18 +11,18 @@ logger = logging.getLogger(__name__)
 
 
 def generate_certificate(
-        certificate_image_path: Text,
-        names_file_path: Text,
-        text_color: Text,
-        x_location: float,
-        y_location: float,
-        is_bold: bool,
-        is_underlined: bool,
-        is_camel: bool,
-        is_upper: bool,
-        font_file_path: Text,
-        font_size: int,
-        output_location: Text
+    certificate_image_path: Text,
+    names_file_path: Text,
+    text_color: Text,
+    x_location: float,
+    y_location: float,
+    is_bold: bool,
+    is_underlined: bool,
+    is_camel: bool,
+    is_upper: bool,
+    font_file_path: Text,
+    font_size: int,
+    output_location: Text,
 ):
     names_list = get_names(names_file_path)
     text_color = ImageColor.getcolor(text_color, "RGB")
@@ -31,42 +31,32 @@ def generate_certificate(
     for name in names_list:
         image = Image.open(certificate_image_path)
         drawImage = ImageDraw.Draw(image)
+        underline = underlineit(drawImage, name, location, text_color, font)
+        bold = boldit(drawImage, name, location, text_color)
+        writing = drawImage.text(location, name, fill=text_color, font=font)
         if is_bold:
             if is_underlined:
-                twidth, theight = drawImage.textsize(name, font=font)
-                lx, ly = location[0], location[1] + theight
-                drawImage.text(location, name, fill=text_color, font=font)
-                drawImage.text((x_location + 1, y_location + 1), name, fill=text_color, font=font)
-                drawImage.text((x_location - 1, y_location - 1), name, fill=text_color, font=font)
-                drawImage.line((lx, ly+10, lx + twidth, ly+10),fill=text_color,width=5)
+                underline  # function is called with variable to avoid clutter
+                bold
             else:
-                drawImage.text(location, name, fill=text_color, font=font)
-                drawImage.text((x_location + 1, y_location + 1), name, fill=text_color, font=font)
-                drawImage.text((x_location - 1, y_location - 1), name, fill=text_color, font=font)
+                bold
         elif is_camel:
+            name = name.title()
             if is_underlined:
-                twidth, theight = drawImage.textsize(name.title(), font=font)
-                lx, ly = location[0], location[1] + theight
-                drawImage.text(location, name.title(), fill=text_color, font=font)
-                drawImage.line((lx, ly+10, lx + twidth, ly+10),fill=text_color,width=5)
+                underline
             else:
-                drawImage.text(location, name.title(), fill=text_color, font=font) 
+                writing
         elif is_upper:
+            name = name.upper()
             if is_underlined:
-                twidth, theight = drawImage.textsize(name.upper(), font=font)
-                lx, ly = location[0], location[1] + theight
-                drawImage.text(location, name.upper(), fill=text_color, font=font)
-                drawImage.line((lx, ly+10, lx + twidth, ly+10),fill=text_color,width=5)
+                underline
             else:
-                drawImage.text(location, name.upper(), fill=text_color, font=font)
-           
+                writing
+
         elif is_underlined:
-            twidth, theight = drawImage.textsize(name, font=font)
-            lx, ly = location[0], location[1] + theight
-            drawImage.text(location, name, fill=text_color, font=font)
-            drawImage.line((lx, ly+10, lx + twidth, ly+10),fill=text_color,width=5)
+            underline
         else:
-            drawImage.text(location, name, fill=text_color, font=font)
+            writing
         image.save(f"{output_location}\certificate_{name}.png")
 
 
@@ -77,6 +67,26 @@ def get_names(names_path: Text) -> List:
         return name_list
     except Exception as exception:
         logger.error(f"Error: {exception}")
+
+
+def underlineit(drawImage, name, location, text_color, font):
+    twidth, theight = drawImage.textsize(name, font=font)
+    locationx, locationy = (
+        location[0],
+        location[1] + theight,
+    )  # these are the coordinates for the underline initiation
+    drawImage.text(location, name, fill=text_color, font=font)
+    drawImage.line(
+        (locationx, locationy + 10, locationx + twidth, locationy + 10),
+        fill=text_color,
+        width=5,
+    )
+
+
+def boldit(drawImage, name, location, text_color, font, x_location, y_location):
+    drawImage.text(location, name, fill=text_color, font=font)
+    drawImage.text((x_location + 1, y_location + 1), name, fill=text_color, font=font)
+    drawImage.text((x_location - 1, y_location - 1), name, fill=text_color, font=font)
 
 
 def path_exist(file_path: Text, is_file: bool) -> (bool, Text):
