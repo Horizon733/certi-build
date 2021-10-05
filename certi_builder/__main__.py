@@ -4,7 +4,7 @@ from certi_builder.builder import generate_certificate, path_exist, validate_hex
 
 
 @click.group()
-@click.version_option("1.0.0")
+@click.version_option("1.0.1")
 def main():
     pass
 
@@ -35,9 +35,6 @@ def main():
     help="We current support TrueType font",
 )
 @click.option("--font-size", prompt=True, type=int, required=True, help="Font size")
-@click.option("--camel", is_flag=True, required=False, help="For camel casing")
-@click.option("--upper", is_flag=True, required=False, help="for capitalizing")
-@click.option("--underlined", is_flag=True, required=False, help="underlines the text")
 @click.option(
     "--output-location",
     prompt=True,
@@ -72,9 +69,6 @@ def build(
     y_location,
     output_location,
     bold,
-    underlined,
-    camel,
-    upper,
 ):
     """
     Generate certificates on go. Every option will be prompted except bold
@@ -105,9 +99,6 @@ def build(
         x_location,
         y_location,
         bold,
-        underlined,
-        camel,
-        upper,
         font_file_path,
         font_size,
         output_location,
