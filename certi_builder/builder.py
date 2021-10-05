@@ -17,6 +17,9 @@ def generate_certificate(
     x_location: float,
     y_location: float,
     is_bold: bool,
+    is_underlined: bool,
+    is_camel: bool,
+    is_upper: bool,
     font_file_path: Text,
     font_size: int,
     output_location: Text,
@@ -28,14 +31,34 @@ def generate_certificate(
     for name in names_list:
         image = Image.open(certificate_image_path)
         drawImage = ImageDraw.Draw(image)
-        drawImage.text(location, name, fill=text_color, font=font)
+
         if is_bold:
-            drawImage.text(
-                (x_location + 1, y_location + 1), name, fill=text_color, font=font
-            )
-            drawImage.text(
-                (x_location - 1, y_location - 1), name, fill=text_color, font=font
-            )
+            if is_underlined:
+                underlineit(drawImage, name, location, text_color, font)
+                boldit(
+                    drawImage, name, location, text_color, font, x_location, y_location
+                )
+            else:
+                boldit(
+                    drawImage, name, location, text_color, font, x_location, y_location
+                )
+        elif is_camel:
+            name = name.title()
+            if is_underlined:
+                underlineit(drawImage, name, location, text_color, font)
+            else:
+                drawImage.text(location, name, fill=text_color, font=font)
+        elif is_upper:
+            name = name.upper()
+            if is_underlined:
+                underlineit(drawImage, name, location, text_color, font)
+            else:
+                drawImage.text(location, name, fill=text_color, font=font)
+
+        elif is_underlined:
+            underlineit(drawImage, name, location, text_color, font)
+        else:
+            drawImage.text(location, name, fill=text_color, font=font)
         image.save(f"{output_location}\certificate_{name}.png")
 
 
@@ -46,6 +69,26 @@ def get_names(names_path: Text) -> List:
         return name_list
     except Exception as exception:
         logger.error(f"Error: {exception}")
+
+
+def underlineit(drawImage, name, location, text_color, font):
+    textwidth, textheight = drawImage.textsize(name, font=font)
+    locationx, locationy = (
+        location[0],
+        location[1] + textheight,
+    )  # these are the coordinates for the underline initiation
+    drawImage.text(location, name, fill=text_color, font=font)
+    drawImage.line(
+        (locationx, locationy + 10, locationx + textwidth, locationy + 10),
+        fill=text_color,
+        width=5,
+    )
+
+
+def boldit(drawImage, name, location, text_color, font, x_location, y_location):
+    drawImage.text(location, name, fill=text_color, font=font)
+    drawImage.text((x_location + 1, y_location + 1), name, fill=text_color, font=font)
+    drawImage.text((x_location - 1, y_location - 1), name, fill=text_color, font=font)
 
 
 def path_exist(file_path: Text, is_file: bool) -> (bool, Text):
