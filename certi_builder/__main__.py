@@ -35,6 +35,9 @@ def main():
     help="We current support TrueType font",
 )
 @click.option("--font-size", prompt=True, type=int, required=True, help="Font size")
+@click.option("--camel", is_flag=True, required=False, help="For camel casing")
+@click.option("--upper", is_flag=True, required=False, help="for capitalizing")
+@click.option("--underlined", is_flag=True, required=False, help="underlines the text")
 @click.option(
     "--output-location",
     prompt=True,
@@ -69,6 +72,9 @@ def build(
     y_location,
     output_location,
     bold,
+    underlined,
+    camel,
+    upper,
 ):
     """
     Generate certificates on go. Every option will be prompted except bold
@@ -99,6 +105,9 @@ def build(
         x_location,
         y_location,
         bold,
+        underlined,
+        camel,
+        upper,
         font_file_path,
         font_size,
         output_location,
