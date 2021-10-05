@@ -31,32 +31,30 @@ def generate_certificate(
     for name in names_list:
         image = Image.open(certificate_image_path)
         drawImage = ImageDraw.Draw(image)
-        underline = underlineit(drawImage, name, location, text_color, font)
-        bold = boldit(drawImage, name, location, text_color)
-        writing = drawImage.text(location, name, fill=text_color, font=font)
+
         if is_bold:
             if is_underlined:
-                underline  # function is called with variable to avoid clutter
-                bold
+                underlineit(drawImage, name, location, text_color, font)
+                boldit(drawImage, name, location, text_color, font, x_location, y_location)
             else:
-                bold
+                boldit(drawImage, name, location, text_color, font, x_location, y_location)
         elif is_camel:
             name = name.title()
             if is_underlined:
-                underline
+                underlineit(drawImage, name, location, text_color, font)
             else:
-                writing
+                drawImage.text(location, name, fill=text_color, font=font)
         elif is_upper:
             name = name.upper()
             if is_underlined:
-                underline
+                underlineit(drawImage, name, location, text_color, font)
             else:
-                writing
+                drawImage.text(location, name, fill=text_color, font=font)
 
         elif is_underlined:
-            underline
+            underlineit(drawImage, name, location, text_color, font)
         else:
-            writing
+            drawImage.text(location, name, fill=text_color, font=font)
         image.save(f"{output_location}\certificate_{name}.png")
 
 
@@ -70,14 +68,14 @@ def get_names(names_path: Text) -> List:
 
 
 def underlineit(drawImage, name, location, text_color, font):
-    twidth, theight = drawImage.textsize(name, font=font)
+    textwidth, textheight = drawImage.textsize(name, font=font)
     locationx, locationy = (
         location[0],
-        location[1] + theight,
+        location[1] + textheight,
     )  # these are the coordinates for the underline initiation
     drawImage.text(location, name, fill=text_color, font=font)
     drawImage.line(
-        (locationx, locationy + 10, locationx + twidth, locationy + 10),
+        (locationx, locationy + 10, locationx + textwidth, locationy + 10),
         fill=text_color,
         width=5,
     )
