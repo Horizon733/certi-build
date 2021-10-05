@@ -35,9 +35,13 @@ def generate_certificate(
         if is_bold:
             if is_underlined:
                 underlineit(drawImage, name, location, text_color, font)
-                boldit(drawImage, name, location, text_color, font, x_location, y_location)
+                boldit(
+                    drawImage, name, location, text_color, font, x_location, y_location
+                )
             else:
-                boldit(drawImage, name, location, text_color, font, x_location, y_location)
+                boldit(
+                    drawImage, name, location, text_color, font, x_location, y_location
+                )
         elif is_camel:
             name = name.title()
             if is_underlined:
