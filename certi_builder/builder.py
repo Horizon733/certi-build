@@ -17,25 +17,29 @@ def generate_certificate(
     x_location: float,
     y_location: float,
     is_bold: bool,
-    font_file_path: Text,
+    is_italics: bool,
     font_size: int,
     output_location: Text,
+    font_file_path: Text,
 ):
     names_list = get_names(names_file_path)
     text_color = ImageColor.getcolor(text_color, "RGB")
     font = ImageFont.truetype(font_file_path, font_size)
+    font_bold = ImageFont.truetype(os.getcwd() + "/fonts/Roboto-Bold.ttf", font_size)
+    font_italic = ImageFont.truetype(
+        os.getcwd() + "/fonts/Roboto-Italic.ttf", font_size
+    )
     location = (x_location, y_location)
     for name in names_list:
         image = Image.open(certificate_image_path)
         drawImage = ImageDraw.Draw(image)
-        drawImage.text(location, name, fill=text_color, font=font)
         if is_bold:
-            drawImage.text(
-                (x_location + 1, y_location + 1), name, fill=text_color, font=font
-            )
-            drawImage.text(
-                (x_location - 1, y_location - 1), name, fill=text_color, font=font
-            )
+            drawImage.text(location, name, text_color, font=font_bold)
+        elif is_italics:
+            drawImage.text(location, name, text_color, font=font_italic)
+        else:
+            drawImage.text(location, name, text_color, font=font)
+
         image.save(f"{output_location}\certificate_{name}.png")
 
 
